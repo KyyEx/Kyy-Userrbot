@@ -8,6 +8,7 @@
 import sys
 from importlib import import_module
 
+import request
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from userbot import BOT_TOKEN, BOT_VER, LOGS, bot
 from userbot.modules import ALL_MODULES
