@@ -9,7 +9,7 @@ from importlib import import_module
 from sys import argv
 
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
-from userbot import BOT_VER, LOGS, bot
+from userbot import BOT_TOKEN, BOT_VER, LOGS, bot
 from userbot.modules import ALL_MODULES
 from userbot.utils import autobot
 
