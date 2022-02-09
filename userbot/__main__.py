@@ -24,12 +24,10 @@ for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
 # bot.loop.run_until_complete(checking())
-LOGS.info(f"Python Version - 3.6")
-    LOGS.info(f"Telethon Version - {version.__version__}")
-    LOGS.info(f"Userbot Version - {BOT_VER}")
-    LOGS.info(
-        f"\n✨Kyy-Userbot✨[Berhasil Diaktifkan 🔥]")
-
+LOGS.info(
+    f"Jika {user.first_name} Membutuhkan Bantuan, Silahkan Tanyakan di Grup https://t.me/NastySupportt")
+LOGS.info(
+    f"✨Kyy-Userbot✨ ⚙️ V{BOT_VER} [TELAH DIAKTIFKAN!]")
 
 if not BOT_TOKEN:
     bot.loop.run_until_complete(autobot())
