@@ -10,7 +10,7 @@ from importlib import import_module
 
 import requests
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
-from userbot import BOT_TOKEN, BOT_VER, LOGS, bot
+from userbot import BOT_TOKEN, BOT_VER, LOGS, ALIVE_NAME bot
 from userbot.modules import ALL_MODULES
 from userbot.utils import autobot
 
@@ -26,7 +26,7 @@ for module_name in ALL_MODULES:
 
 # bot.loop.run_until_complete(checking())
 LOGS.info(
-    f"Jika {user.first_name} Membutuhkan Bantuan, Silahkan Tanyakan di Grup https://t.me/NastySupportt")
+    f"Jika {ALIVE_NAME} Membutuhkan Bantuan, Silahkan Tanyakan di Grup https://t.me/NastySupportt")
 LOGS.info(
     f"✨Kyy-Userbot✨ ⚙️ V{BOT_VER} [TELAH DIAKTIFKAN!]")
 
