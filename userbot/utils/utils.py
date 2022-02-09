@@ -32,7 +32,7 @@ async def autobot():
         return
     await bot.start()
     await bot.send_message(
-        BOTLOG_CHATID, "➕ **Sedang Membuat Bot Di@BotFather Harap Tunggu Beberapa Detik!**"
+        BOTLOG_CHATID, "➕ **Sedang Membuat Bot Di @BotFather Harap Tunggu Beberapa Detik!**"
     )
     who = await bot.get_me()
     name = who.first_name + " Assistant Bot"
