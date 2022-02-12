@@ -19,7 +19,6 @@ from pySmartDL import SmartDL
 from pymongo import MongoClient
 from datetime import datetime
 from redis import StrictRedis
-from markdown import markdown
 from dotenv import load_dotenv
 from requests import get
 from telethon.sync import TelegramClient, custom, events
