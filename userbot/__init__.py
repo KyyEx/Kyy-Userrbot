@@ -656,7 +656,7 @@ with bot:
                     description="Repository Kyy - Userbot",
                     url="https://t.me/NastySupportt",
                     thumb=InputWebDocument(INLINE_PIC, 0, "image/jpeg", []),
-                    text="**Kyy - UserBot**\n➖➖➖➖➖➖➖➖➖➖\n✣ **Owner Repo :** [Kyy-Ex](https://t.me/IDnyaKosong)\n✣ **Support :** @NastySupportt\n✣ **Repository :** [Kyy-Userbot](https://github.com/muhammadrizky16/Kyy-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
+                    text="**Kyy - Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✣ **Owner Repo :** [Kyy-Ex](https://t.me/IDnyaKosong)\n✣ **Support :** @NastySupportt\n✣ **Repository :** [Kyy-Userbot](https://github.com/muhammadrizky16/Kyy-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
                     buttons=[
                         [
                             custom.Button.url("ɢʀᴏᴜᴘ", "https://t.me/NastySupportt"),
@@ -701,11 +701,11 @@ with bot:
                 )
             else:
                 result = builder.article(
-                    title="✗ Kyy-Userbot ✗",
-                    description="Kyy - UserBot | Telethon",
-                    url="https://t.me/NastySupportt",
+                    title="✨ Kyy-Userbot ✨",
+                    description="Kyy - Userbot | Telethon",
+                    url="https://t.me/NastyProject",
                     thumb=InputWebDocument(INLINE_PIC, 0, "image/jpeg", []),
-                    text=f"**Kyy - UserBot**\n➖➖➖➖➖➖➖➖➖➖\n✣ **UserMode:** [{user.first_name}](tg://user?id={user.id})\n✣ **Assistant:** {tgbotusername}\n➖➖➖➖➖➖➖➖➖➖\n**Updates:** @NastyProject\n➖➖➖➖➖➖➖➖➖➖",
+                    text=f"**Kyy - UserBot**\n➖➖➖➖➖➖➖➖➖➖\n✣ **UserMode:** [{user.first_name}](tg://user?id={user.id})\n✣ **Assistant:** {tgbotusername}\n➖➖➖➖➖➖➖➖➖➖\n**Group:** @NastySupportt\n➖➖➖➖➖➖➖➖➖➖",
                     buttons=[
                         [
                             custom.Button.url("ɢʀᴏᴜᴘ", "https://t.me/NastySupportt"),
