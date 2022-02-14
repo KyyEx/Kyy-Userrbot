@@ -31,15 +31,25 @@ from telethon.utils import get_display_name
 
 redis_db = None
 
+# Global Variables
+COUNT_MSG = 0
+USERS = {}
+COUNT_PM = {}
+ENABLE_KILLME = True
+LASTMSG = {}
+CMD_HELP = {}
+ISAFK = False
+AFKREASON = None
+ZALG_LIST = {}
+CMD_LIST = {}
+CMD_HELP = {}
+SUDO_LIST = {}
+INT_PLUG = ""
+LOAD_PLUG = {}
+
 load_dotenv("config.env")
 
 StartTime = time.time()
-
-CMD_LIST = {}
-# for later purposes
-CMD_HELP = {}
-INT_PLUG = ""
-LOAD_PLUG = {}
 
 # Bot Logs setup:
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
