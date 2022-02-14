@@ -9,7 +9,7 @@ import os.path
 from telethon.tl.functions.channels import JoinChannelRequest as Get
 from html_telegraph_poster import TelegraphPoster
 from typing import Optional, Union
-from userbot import bot, LOGS
+from userbot import bot, LOGS, SUDO_USERS
 
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename
