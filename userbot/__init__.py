@@ -30,6 +30,18 @@ from telethon import Button, events, functions, types
 from telethon.tl.types import InputWebDocument
 from telethon.utils import get_display_name
 
+from .storage import Storage
+
+
+def STORAGE(n):
+    return Storage(Path("data") / n)
+
+load_dotenv("config.env")
+
+StartTime = time.time()
+repo = Repo()
+branch = repo.active_branch.name
+
 redis_db = None
 
 # Global Variables
@@ -93,10 +105,7 @@ DEVS = (
     1675900974,
 )
 
-SUDO_USERS = {
-    int(x) for x in os.environ.get(
-        "SUDO_USERS",
-        "1663258664").split()}
+SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
 BL_CHAT = {int(x) for x in os.environ.get("BL_CHAT", "").split()}
 
 # Telegram App KEY and HASH
@@ -549,7 +558,7 @@ with bot:
         uid = user.id
         owner = user.first_name
         logo = ALIVE_LOGO
-        kyylogo = INLINE_PIC
+        roselogo = INLINE_PIC
         tgbotusername = BOT_USERNAME
         BTN_URL_REGEX = re.compile(
             r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)"
@@ -563,7 +572,7 @@ with bot:
                 text = f"**✨ Kyy-Userbot Inline Menu ✨**\n\n✣ **Owner** [{user.first_name}](tg://user?id={user.id})\n✣ **Jumlah** `{len(dugmeler)}` Modules"
                 await event.edit(
                     text,
-                    file=kyylogo,
+                    file=roselogo,
                     buttons=buttons,
                     link_preview=False,
                 )
@@ -645,7 +654,7 @@ with bot:
             if event.query.user_id == uid and query.startswith("@KyyUserbot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
-                    file=kyylogo,
+                    file=roselogo,
                     link_preview=False,
                     text=f"**✨ Kyy-Userbot Inline Menu ✨**\n\n✣ **Owner** [{user.first_name}](tg://user?id={user.id})\n✣ **Jumlah** `{len(dugmeler)}` Modules",
                     buttons=buttons,
