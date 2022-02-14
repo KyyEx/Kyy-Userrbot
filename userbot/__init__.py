@@ -27,6 +27,7 @@ from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from telethon.tl.functions.channels import JoinChannelRequest as GetSec
 from telethon.sessions import StringSession
 from telethon import Button, events, functions, types
+from telethon.tl.types import InputWebDocument
 from telethon.utils import get_display_name
 
 redis_db = None
