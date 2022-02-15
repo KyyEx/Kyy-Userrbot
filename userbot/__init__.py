@@ -14,31 +14,24 @@ from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
 from math import ceil
 
-from dotenv import load_dotenv
-from git import Repo
+from pylast import LastFMNetwork, md5
+from pySmartDL import SmartDL
 from pymongo import MongoClient
 from datetime import datetime
 from redis import StrictRedis
-from pylast import LastFMNetwork, md5
-from pySmartDL import SmartDL
+from dotenv import load_dotenv
 from requests import get
 from telethon import Button
-from telethon.errors import UserIsBlockedError
-from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
-from telethon.sessions import StringSession
-from telethon.tl.functions.channels import JoinChannelRequest as GetSec
 from telethon.sync import TelegramClient, custom, events
+from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
+from telethon.tl.functions.channels import JoinChannelRequest as GetSec
+from telethon.sessions import StringSession
+from telethon import Button, events, functions, types
 from telethon.tl.types import InputWebDocument
 from telethon.utils import get_display_name
 
 
 redis_db = None
-
-load_dotenv("config.env")
-
-StartTime = time.time()
-repo = Repo()
-branch = repo.active_branch.name
 
 # Global Variables
 COUNT_MSG = 0
@@ -111,12 +104,9 @@ API_HASH = str(os.environ.get("API_HASH") or None)
 # Userbot Session String
 STRING_SESSION = os.environ.get("STRING_SESSION", "")
 
-# Load or No Load modules
-LOAD = os.environ.get("LOAD", "").split()
-NO_LOAD = os.environ.get("NO_LOAD", "").split()
-
 # Logging channel/group ID configuration.
 BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", ""))
+
 
 # Handler Userbot
 CMD_HANDLER = os.environ.get("CMD_HANDLER") or "."
@@ -379,11 +369,20 @@ for binary, path in binaries.items():
 
 # 'bot' variable
 if STRING_SESSION:
-    # pylint: disable=invalid-name
-    bot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
+    session = StringSession(str(STRING_SESSION))
 else:
-    # pylint: disable=invalid-name
-    bot = TelegramClient("userbot", API_KEY, API_HASH)
+    session = "Kyy-UserBot"
+try:
+    bot = TelegramClient(
+        session=session,
+        api_id=API_KEY,
+        api_hash=API_HASH,
+        auto_reconnect=True,
+        connection_retries=None,
+    )
+except Exception as e:
+    print(f"STRING_SESSION - {e}")
+    sys.exit()
 
 
 async def checking():
@@ -450,7 +449,7 @@ async def check_alive():
 async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
     message = (
-        f"**Tonic-Userbot v{BOT_VER} is back up and running!**\n\n"
+        f"**Kyy-Userbot v{BOT_VER} is back up and running!**\n\n"
         f"**Telethon:** {version.__version__}\n"
         f"**Python:** {python_version()}\n"
         f"**User:** {DEFAULTUSER}"
@@ -559,7 +558,7 @@ with bot:
             if event.query.user_id == uid or event.query.user_id in SUDO_USERS:
                 current_page_number = int(lockpage)
                 buttons = paginate_help(current_page_number, dugmeler, "helpme")
-                text = f"**✗ Tonic-Userbot Inline Menu ✗**\n\n✣ **Owner** [{user.first_name}](tg://user?id={user.id})\n✣ **Jumlah** `{len(dugmeler)}` Modules"
+                text = f"**✨ Kyy-Userbot Inline Menu ✨**\n\n✣ **Owner** [{user.first_name}](tg://user?id={user.id})\n✣ **Jumlah** `{len(dugmeler)}` Modules"
                 await event.edit(
                     text,
                     file=roselogo,
@@ -641,26 +640,26 @@ with bot:
             builder = event.builder
             result = None
             query = event.text
-            if event.query.user_id == uid and query.startswith("@TonicUserbot"):
+            if event.query.user_id == uid and query.startswith("@KyyUserbot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
                     file=roselogo,
                     link_preview=False,
-                    text=f"**✗ Tonic-Userbot Inline Menu ✗**\n\n✣ **Owner** [{user.first_name}](tg://user?id={user.id})\n✣ **Jumlah** `{len(dugmeler)}` Modules",
+                    text=f"**✨ Kyy-Userbot Inline Menu ✨**\n\n✣ **Owner** [{user.first_name}](tg://user?id={user.id})\n✣ **Jumlah** `{len(dugmeler)}` Modules",
                     buttons=buttons,
                 )
             elif query.startswith("repo"):
                 result = builder.article(
                     title="Repository",
-                    description="Repository Tonic - Userbot",
-                    url="https://t.me/PrimeSupportGroup",
+                    description="Repository Kyy - Userbot",
+                    url="https://t.me/NastySupportt",
                     thumb=InputWebDocument(INLINE_PIC, 0, "image/jpeg", []),
-                    text="**Tonic - UserBot**\n➖➖➖➖➖➖➖➖➖➖\n✣ **Owner Repo :** [Toni-Ex](https://t.me/Bukan_guudlooking)\n✣ **Support :** @PrimeSupportGroup\n✣ **Repository :** [Tonic-Userbot](https://github.com/Tonic990/Tonic-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
+                    text="**Kyy - Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✣ **Owner Repo :** [Kyy-Ex](https://t.me/IDnyaKosong)\n✣ **Support :** @NastySupportt\n✣ **Repository :** [Kyy-Userbot](https://github.com/muhammadrizky16/Kyy-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
                     buttons=[
                         [
-                            custom.Button.url("ɢʀᴏᴜᴘ", "https://t.me/PrimeSupportGroup"),
+                            custom.Button.url("ɢʀᴏᴜᴘ", "https://t.me/NastySupportt"),
                             custom.Button.url(
-                                "ʀᴇᴘᴏ", "https://github.com/Tonic990/Tonic-Userbot"
+                                "ʀᴇᴘᴏ", "https://github.com/muhammadrizky16/Kyy-Userbot"
                             ),
                         ],
                     ],
@@ -700,16 +699,16 @@ with bot:
                 )
             else:
                 result = builder.article(
-                    title="✗ Tonic-Userbot ✗",
-                    description="Tonic - UserBot | Telethon",
-                    url="https://t.me/PrimeSupportGroup",
+                    title="✨ Kyy-Userbot ✨",
+                    description="Kyy - Userbot | Telethon",
+                    url="https://t.me/NastyProject",
                     thumb=InputWebDocument(INLINE_PIC, 0, "image/jpeg", []),
-                    text=f"**Tonic - UserBot**\n➖➖➖➖➖➖➖➖➖➖\n✣ **UserMode:** [{user.first_name}](tg://user?id={user.id})\n✣ **Assistant:** {tgbotusername}\n➖➖➖➖➖➖➖➖➖➖\n**Support:** @PrimeSupportGroup\n➖➖➖➖➖➖➖➖➖➖",
+                    text=f"**Kyy - UserBot**\n➖➖➖➖➖➖➖➖➖➖\n✣ **UserMode:** [{user.first_name}](tg://user?id={user.id})\n✣ **Assistant:** {tgbotusername}\n➖➖➖➖➖➖➖➖➖➖\n**Group:** @NastySupportt\n➖➖➖➖➖➖➖➖➖➖",
                     buttons=[
                         [
-                            custom.Button.url("ɢʀᴏᴜᴘ", "https://t.me/PrimeSupportGroup"),
+                            custom.Button.url("ɢʀᴏᴜᴘ", "https://t.me/NastySupportt"),
                             custom.Button.url(
-                                "ʀᴇᴘᴏ", "https://github.com/Tonic990/Tonic-Userbot"
+                                "ʀᴇᴘᴏ", "https://github.com/muhammadrizky16/Kyy-Userbot"
                             ),
                         ],
                     ],
