@@ -31,12 +31,6 @@ from telethon.tl.types import InputWebDocument
 from telethon.utils import get_display_name
 
 
-load_dotenv("config.env")
-
-StartTime = time.time()
-repo = Repo()
-branch = repo.active_branch.name
-
 redis_db = None
 
 # Global Variables
