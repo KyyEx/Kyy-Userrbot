@@ -16,6 +16,9 @@ from math import ceil
 
 from dotenv import load_dotenv
 from git import Repo
+from pymongo import MongoClient
+from datetime import datetime
+from redis import StrictRedis
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from requests import get
